@@ -288,8 +288,9 @@ function Home() {
             <div className="absolute -right-10 -top-28 h-80 w-80 rounded-full border-[38px] border-[hsl(var(--secondary)/.22)]" /><div className="absolute bottom-0 right-[35%] h-4 w-4 rounded-full bg-[hsl(var(--secondary))]" />
             <div className="relative grid gap-12 lg:grid-cols-[1fr_360px] lg:items-center">
               <div><SectionLabel light>seu repertório começa aqui</SectionLabel><h2 className="max-w-2xl font-display text-4xl leading-[1.02] tracking-[-.045em] sm:text-6xl" data-testid="text-offer-title">Mais ideias na manga. Mais presença na sala.</h2><p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--primary-foreground)/.75)]">Tenha as 54 dinâmicas reunidas em um material digital prático para consultar sempre que uma nova ideia fizer falta.</p><a href={CHECKOUT_URL} className="cta-button mt-8 inline-flex items-center gap-3 rounded-full bg-[hsl(var(--secondary))] px-6 py-4 text-sm font-bold text-[hsl(var(--foreground))] shadow-[5px_5px_0_hsl(var(--background)/.5)] transition-all hover:-translate-y-0.5 hover:shadow-[7px_7px_0_hsl(var(--background)/.5)]" data-testid="link-purchase-cta">Quero as 54 dinâmicas agora <ArrowRight size={18} className="cta-arrow" /></a><p className="mt-4 text-[11px] text-[hsl(var(--primary-foreground)/.52)]">Destino de compra configurável · acesso digital</p></div>
-              <div className="relative rounded-[22px] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]">
-                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">você recebe</p>
+              <div className="space-y-4">
+                <div className="relative rounded-[22px] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]">
+                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">plano básico</p>
                 <div className="mt-3 flex items-end gap-3">
                   <span className="text-sm text-[hsl(var(--muted-foreground))] line-through">De R$ 65,90</span>
                   <span className="font-display text-4xl leading-none text-[hsl(var(--primary))]">R$ 10,00</span>
@@ -297,6 +298,18 @@ function Home() {
                 <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
                 <div className="my-5 space-y-4">{['54 dinâmicas prontas para aplicar', 'Orientações simples para conduzir', 'Sugestões de materiais e adaptações', 'Um repertório para consultar sempre'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div>
                 <div className="border-t border-[hsl(var(--border))] pt-4 text-xs leading-5 text-[hsl(var(--muted-foreground))]"><ShieldCheck size={15} className="mr-1 inline text-[hsl(var(--accent))]" /> Material pensado para a rotina real da Educação Infantil.</div>
+                </div>
+                <div className="relative overflow-hidden rounded-[22px] border-2 border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] p-6 text-[hsl(var(--foreground))] shadow-[0_12px_28px_rgba(34,22,59,.16)]">
+                  <span className="absolute right-5 top-5 rounded-full bg-[hsl(var(--primary))] px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em] text-[hsl(var(--primary-foreground))]">mais completo</span>
+                  <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">plano premium</p>
+                  <p className="mt-3 font-display text-4xl leading-none text-[hsl(var(--primary))]">R$ 27,00</p>
+                  <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
+                  <div className="my-5 space-y-3 text-sm font-semibold">
+                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Experiência premium para sua rotina</div>
+                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Material organizado e pronto para usar</div>
+                  </div>
+                  <a href={CHECKOUT_URL} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--primary))] px-5 py-3 text-sm font-bold text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-0.5" data-testid="link-premium-cta">Quero o plano premium <ArrowRight size={16} /></a>
+                </div>
               </div>
             </div>
           </div>
