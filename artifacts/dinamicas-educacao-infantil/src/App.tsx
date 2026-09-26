@@ -86,7 +86,7 @@ function PaperPreview() {
         </div>
         <div className="mt-4 flex items-center gap-2 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]"><Check size={14} className="text-[hsl(var(--accent))]" /> Poucos materiais, muita presença</div>
       </div>
-      <div className="drift absolute -bottom-1 left-[2%] z-20 flex rotate-[-7deg] items-center gap-2 rounded-2xl border border-[hsl(var(--primary)/.12)] bg-[hsl(var(--secondary))] px-4 py-3 text-xs font-bold text-[hsl(var(--foreground))] shadow-[0_13px_28px_rgba(64,47,95,.14)] sm:left-[3%]">
+      <div className="absolute -bottom-1 left-[2%] z-20 flex rotate-[-7deg] items-center gap-2 rounded-2xl border border-[hsl(var(--primary)/.12)] bg-[hsl(var(--secondary))] px-4 py-3 text-xs font-bold text-[hsl(var(--foreground))] shadow-[0_13px_28px_rgba(64,47,95,.14)] sm:left-[3%]">
         <Download size={16} /> pronto para usar
       </div>
       <span className="absolute right-[4%] top-[22%] h-3 w-3 rounded-full bg-[hsl(var(--accent))] sm:right-[1%]" />
