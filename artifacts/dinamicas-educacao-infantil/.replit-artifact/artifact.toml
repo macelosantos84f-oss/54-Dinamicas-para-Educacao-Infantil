@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "54 Dinâmicas para Educação Infantil"
+description = "Landing page de vendas para um material digital com 54 dinâmicas interativas prontas para professoras da Educação Infantil."
+version = "1.0.0"
+id = "artifacts/dinamicas-educacao-infantil"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19131
+
+[services.development]
+run = "pnpm --filter @workspace/dinamicas-educacao-infantil run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dinamicas-educacao-infantil", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dinamicas-educacao-infantil/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19131"
+BASE_PATH = "/"
