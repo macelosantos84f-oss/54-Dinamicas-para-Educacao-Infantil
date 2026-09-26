@@ -167,7 +167,7 @@ function Home() {
             <h1 className="reveal reveal-delay-1 mt-6 max-w-[700px] font-display text-[clamp(3.2rem,7vw,6.7rem)] leading-[.91] tracking-[-.055em] text-[hsl(var(--foreground))]" data-testid="text-hero-title">
               Sua próxima atividade <span className="serif-underline text-[hsl(var(--primary))]">já está pronta.</span>
             </h1>
-            <button type="button" onClick={() => setShowVideo(true)} className="reveal reveal-delay-2 mt-7 grid h-64 w-64 place-items-center rounded-[28px] bg-black text-white shadow-[10px_10px_0_hsl(var(--secondary))] transition-transform hover:-translate-y-1 hover:shadow-[13px_13px_0_hsl(var(--secondary))] sm:h-80 sm:w-80" aria-label="Assistir ao vídeo de apresentação" data-testid="button-hero-video">
+            <button type="button" onClick={() => setShowVideo(true)} className="reveal reveal-delay-2 mt-7 grid aspect-[9/16] w-[260px] place-items-center rounded-[28px] bg-black text-white shadow-[10px_10px_0_hsl(var(--secondary))] transition-transform hover:-translate-y-1 hover:shadow-[13px_13px_0_hsl(var(--secondary))] sm:w-[300px]" aria-label="Assistir ao vídeo de apresentação" data-testid="button-hero-video">
               <Volume2 size={70} strokeWidth={1.5} />
             </button>
             <p className="reveal reveal-delay-2 mt-7 max-w-xl text-[17px] leading-8 text-[hsl(var(--muted-foreground))] sm:text-lg" data-testid="text-hero-description">
