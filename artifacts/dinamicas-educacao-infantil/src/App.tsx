@@ -302,7 +302,7 @@ function Home() {
                   <span className="font-display text-4xl leading-none text-[hsl(var(--primary))]">R$ 10,00</span>
                 </div>
                 <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
-                <div className="my-5 space-y-4">{['50 dinâmicas em PDF', 'Orientações simples para conduzir', 'Sugestões de materiais e adaptações', 'Acesso digital imediato'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div>
+                <div className="my-5 space-y-4">{['50 dinâmicas em PDF', 'Organizadas por nível e objetivo', 'Acesso digital', 'Orientações simples para conduzir'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div>
                 <div className="border-t border-[hsl(var(--border))] pt-4 text-xs leading-5 text-[hsl(var(--muted-foreground))]"><ShieldCheck size={15} className="mr-1 inline text-[hsl(var(--accent))]" /> Material pensado para a rotina real da Educação Infantil.</div>
                 <a href={CHECKOUT_URL} className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--primary))] px-5 py-3 text-sm font-bold text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-0.5" data-testid="link-basic-cta">Escolher o plano básico <ArrowRight size={16} /></a>
                 </div>
@@ -313,7 +313,8 @@ function Home() {
                   <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
                   <div className="my-5 space-y-3 text-sm font-semibold">
                     <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />88 dinâmicas em PDF</div>
-                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Material organizado e pronto para usar</div>
+                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Organizadas por nível e objetivo</div>
+                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Acesso digital</div>
                     <div className="flex items-start gap-3 text-[hsl(var(--primary))]"><Star size={17} className="mt-0.5 shrink-0" fill="currentColor" /> Bônus: certificado de participação</div>
                   </div>
                   <a href={CHECKOUT_URL} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--primary))] px-5 py-3 text-sm font-bold text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-0.5" data-testid="link-premium-cta">Quero o plano premium <ArrowRight size={16} /></a>
