@@ -129,6 +129,7 @@ function SectionLabel({ children, light = false }: { children: ReactNode; light?
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <div className="page-shell noise">
@@ -171,7 +172,12 @@ function Home() {
             </p>
             <div className="reveal reveal-delay-3 mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <ButtonLink href="#oferta" testId="link-hero-cta">Quero o repertório completo <ArrowRight size={18} className="cta-arrow" /></ButtonLink>
-              <a href="#por-dentro" className="inline-flex items-center gap-2 px-2 py-2 text-sm font-bold text-[hsl(var(--primary))] hover:gap-3" data-testid="link-hero-secondary">Ver o que vem dentro <ArrowDown size={15} /></a>
+              <div className="flex flex-wrap items-center gap-2">
+                <a href="#por-dentro" className="inline-flex items-center gap-2 px-2 py-2 text-sm font-bold text-[hsl(var(--primary))] hover:gap-3" data-testid="link-hero-secondary">Ver o que vem dentro <ArrowDown size={15} /></a>
+                <button type="button" onClick={() => setShowVideo(true)} className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--primary)/.2)] bg-[hsl(var(--card)/.7)] px-3.5 py-2 text-sm font-bold text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--primary)/.5)] hover:bg-[hsl(var(--card))]" data-testid="button-hero-video">
+                  <CirclePlay size={17} /> Assistir ao vídeo
+                </button>
+              </div>
             </div>
             <div className="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-semibold text-[hsl(var(--muted-foreground))]">
               <span className="flex items-center gap-2"><Check size={15} className="text-[hsl(var(--accent))]" /> pronto para aplicar</span>
@@ -284,7 +290,16 @@ function Home() {
             <div className="absolute -right-10 -top-28 h-80 w-80 rounded-full border-[38px] border-[hsl(var(--secondary)/.22)]" /><div className="absolute bottom-0 right-[35%] h-4 w-4 rounded-full bg-[hsl(var(--secondary))]" />
             <div className="relative grid gap-12 lg:grid-cols-[1fr_360px] lg:items-center">
               <div><SectionLabel light>seu repertório começa aqui</SectionLabel><h2 className="max-w-2xl font-display text-4xl leading-[1.02] tracking-[-.045em] sm:text-6xl" data-testid="text-offer-title">Mais ideias na manga. Mais presença na sala.</h2><p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--primary-foreground)/.75)]">Tenha as 54 dinâmicas reunidas em um material digital prático para consultar sempre que uma nova ideia fizer falta.</p><a href={CHECKOUT_URL} className="cta-button mt-8 inline-flex items-center gap-3 rounded-full bg-[hsl(var(--secondary))] px-6 py-4 text-sm font-bold text-[hsl(var(--foreground))] shadow-[5px_5px_0_hsl(var(--background)/.5)] transition-all hover:-translate-y-0.5 hover:shadow-[7px_7px_0_hsl(var(--background)/.5)]" data-testid="link-purchase-cta">Quero as 54 dinâmicas agora <ArrowRight size={18} className="cta-arrow" /></a><p className="mt-4 text-[11px] text-[hsl(var(--primary-foreground)/.52)]">Destino de compra configurável · acesso digital</p></div>
-              <div className="relative rounded-[22px] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]"><p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">você recebe</p><div className="my-5 space-y-4">{['54 dinâmicas prontas para aplicar', 'Orientações simples para conduzir', 'Sugestões de materiais e adaptações', 'Um repertório para consultar sempre'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div><div className="border-t border-[hsl(var(--border))] pt-4 text-xs leading-5 text-[hsl(var(--muted-foreground))]"><ShieldCheck size={15} className="mr-1 inline text-[hsl(var(--accent))]" /> Material pensado para a rotina real da Educação Infantil.</div></div>
+              <div className="relative rounded-[22px] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]">
+                <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">você recebe</p>
+                <div className="mt-3 flex items-end gap-3">
+                  <span className="text-sm text-[hsl(var(--muted-foreground))] line-through">De R$ 65,90</span>
+                  <span className="font-display text-4xl leading-none text-[hsl(var(--primary))]">R$ 10,00</span>
+                </div>
+                <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
+                <div className="my-5 space-y-4">{['54 dinâmicas prontas para aplicar', 'Orientações simples para conduzir', 'Sugestões de materiais e adaptações', 'Um repertório para consultar sempre'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div>
+                <div className="border-t border-[hsl(var(--border))] pt-4 text-xs leading-5 text-[hsl(var(--muted-foreground))]"><ShieldCheck size={15} className="mr-1 inline text-[hsl(var(--accent))]" /> Material pensado para a rotina real da Educação Infantil.</div>
+              </div>
             </div>
           </div>
         </section>
@@ -306,6 +321,20 @@ function Home() {
           </div>
         </section>
       </main>
+      {showVideo && (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-[hsl(var(--foreground)/.58)] px-5 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="video-dialog-title" onClick={() => setShowVideo(false)}>
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-[28px] bg-[hsl(var(--background))] p-3 shadow-[0_24px_80px_rgba(34,22,59,.3)]" onClick={(event) => event.stopPropagation()}>
+            <button type="button" onClick={() => setShowVideo(false)} className="absolute right-5 top-5 z-10 grid h-10 w-10 place-items-center rounded-full bg-[hsl(var(--background)/.85)] text-[hsl(var(--foreground))] shadow-sm" aria-label="Fechar vídeo" data-testid="button-close-video"><X size={18} /></button>
+            <div className="grid min-h-[300px] place-items-center rounded-[21px] bg-[hsl(var(--primary))] px-8 py-14 text-center text-[hsl(var(--primary-foreground))]">
+              <div>
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--foreground))]"><CirclePlay size={28} fill="currentColor" /></div>
+                <h2 id="video-dialog-title" className="mt-6 font-display text-3xl">Veja como o material funciona</h2>
+                <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[hsl(var(--primary-foreground)/.72)]">Este espaço está preparado para receber o seu vídeo de apresentação.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <footer className="bg-[hsl(var(--foreground))] text-[hsl(var(--background))]">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 sm:flex-row sm:items-center sm:justify-between lg:px-10">
           <div className="[&_*]:text-[hsl(var(--background))]"><Mark compact /><p className="mt-4 max-w-xs text-xs leading-5 opacity-60">Recursos para deixar a Educação Infantil mais participativa, possível e viva.</p></div>
