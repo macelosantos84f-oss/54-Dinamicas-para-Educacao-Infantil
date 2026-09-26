@@ -60,7 +60,7 @@ function PaperPreview() {
           </div>
         </div>
       </div>
-      <div className="float absolute right-[5%] top-[2%] z-10 h-[88%] w-[76%] rounded-[25px] border border-[hsl(var(--primary)/.17)] bg-[hsl(var(--card))] p-5 shadow-[0_26px_70px_rgba(64,47,95,.18)] sm:right-[8%] sm:top-[4%]">
+      <div className="absolute right-[5%] top-[2%] z-10 h-[88%] w-[76%] rounded-[25px] border border-[hsl(var(--primary)/.17)] bg-[hsl(var(--card))] p-5 shadow-[0_26px_70px_rgba(64,47,95,.18)] sm:right-[8%] sm:top-[4%]">
         <div className="flex items-start justify-between">
           <div>
             <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[.2em] text-[hsl(var(--primary))]">
