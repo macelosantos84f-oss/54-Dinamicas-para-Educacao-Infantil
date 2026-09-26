@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, Volume2, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -167,17 +167,15 @@ function Home() {
             <h1 className="reveal reveal-delay-1 mt-6 max-w-[700px] font-display text-[clamp(3.2rem,7vw,6.7rem)] leading-[.91] tracking-[-.055em] text-[hsl(var(--foreground))]" data-testid="text-hero-title">
               Sua próxima atividade <span className="serif-underline text-[hsl(var(--primary))]">já está pronta.</span>
             </h1>
+            <button type="button" onClick={() => setShowVideo(true)} className="reveal reveal-delay-2 mt-7 grid h-28 w-28 place-items-center rounded-[22px] bg-black text-white shadow-[7px_7px_0_hsl(var(--secondary))] transition-transform hover:-translate-y-1 hover:shadow-[9px_9px_0_hsl(var(--secondary))]" aria-label="Assistir ao vídeo de apresentação" data-testid="button-hero-video">
+              <Volume2 size={34} strokeWidth={1.8} />
+            </button>
             <p className="reveal reveal-delay-2 mt-7 max-w-xl text-[17px] leading-8 text-[hsl(var(--muted-foreground))] sm:text-lg" data-testid="text-hero-description">
               54 dinâmicas interativas para transformar a rotina da Educação Infantil em mais conversa, movimento e participação — sem passar a noite planejando.
             </p>
             <div className="reveal reveal-delay-3 mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <ButtonLink href="#oferta" testId="link-hero-cta">Quero o repertório completo <ArrowRight size={18} className="cta-arrow" /></ButtonLink>
-              <div className="flex flex-wrap items-center gap-2">
-                <a href="#por-dentro" className="inline-flex items-center gap-2 px-2 py-2 text-sm font-bold text-[hsl(var(--primary))] hover:gap-3" data-testid="link-hero-secondary">Ver o que vem dentro <ArrowDown size={15} /></a>
-                <button type="button" onClick={() => setShowVideo(true)} className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--primary)/.2)] bg-[hsl(var(--card)/.7)] px-3.5 py-2 text-sm font-bold text-[hsl(var(--primary))] transition-colors hover:border-[hsl(var(--primary)/.5)] hover:bg-[hsl(var(--card))]" data-testid="button-hero-video">
-                  <CirclePlay size={17} /> Assistir ao vídeo
-                </button>
-              </div>
+              <a href="#por-dentro" className="inline-flex items-center gap-2 px-2 py-2 text-sm font-bold text-[hsl(var(--primary))] hover:gap-3" data-testid="link-hero-secondary">Ver o que vem dentro <ArrowDown size={15} /></a>
             </div>
             <div className="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-semibold text-[hsl(var(--muted-foreground))]">
               <span className="flex items-center gap-2"><Check size={15} className="text-[hsl(var(--accent))]" /> pronto para aplicar</span>
