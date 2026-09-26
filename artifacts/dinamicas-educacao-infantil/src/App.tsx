@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, Volume2, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
@@ -9,6 +9,58 @@ import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 
 const queryClient = new QueryClient();
 const CHECKOUT_URL = '#checkout-placeholder';
+const OFFER_COUNTDOWN_KEY = 'aula-viva-offer-countdown-deadline';
+const OFFER_COUNTDOWN_DURATION = 24 * 60 * 60 * 1000;
+
+function getOfferDeadline() {
+  const now = Date.now();
+  try {
+    const storedDeadline = Number(window.localStorage.getItem(OFFER_COUNTDOWN_KEY));
+    if (Number.isFinite(storedDeadline) && storedDeadline > now) return storedDeadline;
+
+    const newDeadline = now + OFFER_COUNTDOWN_DURATION;
+    window.localStorage.setItem(OFFER_COUNTDOWN_KEY, String(newDeadline));
+    return newDeadline;
+  } catch {
+    return now + OFFER_COUNTDOWN_DURATION;
+  }
+}
+
+function OfferCountdown() {
+  const [deadline] = useState(getOfferDeadline);
+  const [remainingMs, setRemainingMs] = useState(() => Math.max(0, deadline - Date.now()));
+
+  useEffect(() => {
+    const updateRemaining = () => setRemainingMs(Math.max(0, deadline - Date.now()));
+    updateRemaining();
+    const interval = window.setInterval(updateRemaining, 1000);
+    return () => window.clearInterval(interval);
+  }, [deadline]);
+
+  const totalSeconds = Math.floor(remainingMs / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const formatTime = (value: number) => String(value).padStart(2, '0');
+
+  return (
+    <div className="rounded-[18px] bg-[#ef5d65] px-4 py-4 text-center text-white shadow-[0_10px_24px_rgba(239,93,101,.2)]" data-testid="offer-countdown" aria-live="polite">
+      <p className="text-[10px] font-bold uppercase tracking-[.15em]">oferta especial expira em:</p>
+      <div className="mt-3 flex items-center justify-center gap-2">
+        {[
+          [formatTime(hours), 'horas'],
+          [formatTime(minutes), 'min'],
+          [formatTime(seconds), 'seg'],
+        ].map(([value, label]) => (
+          <div className="min-w-[52px] rounded-xl bg-white px-2 py-2 text-[hsl(var(--foreground))] shadow-sm" key={label}>
+            <p className="font-display text-2xl leading-none text-[#ef5d65]">{value}</p>
+            <p className="mt-1 text-[9px] font-bold uppercase tracking-[.1em] text-[hsl(var(--muted-foreground))]">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 type IconType = typeof Sparkles;
 
@@ -295,6 +347,7 @@ function Home() {
             <div className="relative grid gap-12 lg:grid-cols-[1fr_360px] lg:items-center">
               <div><SectionLabel light>seu repertório começa aqui</SectionLabel><h2 className="max-w-2xl font-display text-4xl leading-[1.02] tracking-[-.045em] sm:text-6xl" data-testid="text-offer-title">Mais ideias na manga. Mais presença na sala.</h2><p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--primary-foreground)/.75)]">Escolha o material que combina com a sua rotina e tenha dinâmicas em PDF para consultar sempre que uma nova ideia fizer falta.</p><a href={CHECKOUT_URL} className="cta-button mt-8 inline-flex items-center gap-3 rounded-full bg-[hsl(var(--secondary))] px-6 py-4 text-sm font-bold text-[hsl(var(--foreground))] shadow-[5px_5px_0_hsl(var(--background)/.5)] transition-all hover:-translate-y-0.5 hover:shadow-[7px_7px_0_hsl(var(--background)/.5)]" data-testid="link-purchase-cta">Quero meu material agora <ArrowRight size={18} className="cta-arrow" /></a><p className="mt-4 text-[11px] text-[hsl(var(--primary-foreground)/.52)]">Destino de compra configurável · acesso digital</p></div>
               <div className="space-y-4">
+                <OfferCountdown />
                 <div className="relative rounded-[22px] border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]" data-testid="card-basic-plan">
                 <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">plano básico</p>
                 <div className="mt-3 flex items-end gap-3">
