@@ -122,6 +122,12 @@ const faqs = [
   ['Como recebo o material?', 'O acesso é digital. Depois de configurar o checkout, você poderá substituir o destino do botão por seu link de compra e entrega.'],
 ];
 
+const testimonials = [
+  ['“Ter uma dinâmica pronta para cada momento da rotina deixa a sala mais leve e participativa.”', 'Professora da Educação Infantil', 'educadora'],
+  ['“As propostas são simples de entender e dão liberdade para adaptar ao jeito da minha turma.”', 'Coordenadora pedagógica', 'coordenação'],
+  ['“Uso nas acolhidas e transições. As crianças entram na atividade com muito mais vontade.”', 'Professora de Educação Infantil', 'professora'],
+];
+
 function SectionLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
   return <p className={`mb-4 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.2em] ${light ? 'text-[hsl(var(--secondary))]' : 'text-[hsl(var(--primary))]'}`}><span className={`h-2 w-2 rounded-full ${light ? 'bg-[hsl(var(--secondary))]' : 'bg-[hsl(var(--accent))]'}`} />{children}</p>;
 }
@@ -287,30 +293,79 @@ function Home() {
           <div id="checkout-placeholder" className="relative overflow-hidden rounded-[30px] bg-[hsl(var(--primary))] px-6 py-10 text-[hsl(var(--primary-foreground))] sm:px-10 sm:py-14 lg:px-16 lg:py-16">
             <div className="absolute -right-10 -top-28 h-80 w-80 rounded-full border-[38px] border-[hsl(var(--secondary)/.22)]" /><div className="absolute bottom-0 right-[35%] h-4 w-4 rounded-full bg-[hsl(var(--secondary))]" />
             <div className="relative grid gap-12 lg:grid-cols-[1fr_360px] lg:items-center">
-              <div><SectionLabel light>seu repertório começa aqui</SectionLabel><h2 className="max-w-2xl font-display text-4xl leading-[1.02] tracking-[-.045em] sm:text-6xl" data-testid="text-offer-title">Mais ideias na manga. Mais presença na sala.</h2><p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--primary-foreground)/.75)]">Tenha as 54 dinâmicas reunidas em um material digital prático para consultar sempre que uma nova ideia fizer falta.</p><a href={CHECKOUT_URL} className="cta-button mt-8 inline-flex items-center gap-3 rounded-full bg-[hsl(var(--secondary))] px-6 py-4 text-sm font-bold text-[hsl(var(--foreground))] shadow-[5px_5px_0_hsl(var(--background)/.5)] transition-all hover:-translate-y-0.5 hover:shadow-[7px_7px_0_hsl(var(--background)/.5)]" data-testid="link-purchase-cta">Quero as 54 dinâmicas agora <ArrowRight size={18} className="cta-arrow" /></a><p className="mt-4 text-[11px] text-[hsl(var(--primary-foreground)/.52)]">Destino de compra configurável · acesso digital</p></div>
+              <div><SectionLabel light>seu repertório começa aqui</SectionLabel><h2 className="max-w-2xl font-display text-4xl leading-[1.02] tracking-[-.045em] sm:text-6xl" data-testid="text-offer-title">Mais ideias na manga. Mais presença na sala.</h2><p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--primary-foreground)/.75)]">Escolha o material que combina com a sua rotina e tenha dinâmicas em PDF para consultar sempre que uma nova ideia fizer falta.</p><a href={CHECKOUT_URL} className="cta-button mt-8 inline-flex items-center gap-3 rounded-full bg-[hsl(var(--secondary))] px-6 py-4 text-sm font-bold text-[hsl(var(--foreground))] shadow-[5px_5px_0_hsl(var(--background)/.5)] transition-all hover:-translate-y-0.5 hover:shadow-[7px_7px_0_hsl(var(--background)/.5)]" data-testid="link-purchase-cta">Quero meu material agora <ArrowRight size={18} className="cta-arrow" /></a><p className="mt-4 text-[11px] text-[hsl(var(--primary-foreground)/.52)]">Destino de compra configurável · acesso digital</p></div>
               <div className="space-y-4">
-                <div className="relative rounded-[22px] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]">
+                <div className="relative rounded-[22px] border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6 text-[hsl(var(--foreground))] shadow-[0_18px_50px_rgba(34,22,59,.22)]" data-testid="card-basic-plan">
                 <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">plano básico</p>
                 <div className="mt-3 flex items-end gap-3">
                   <span className="text-sm text-[hsl(var(--muted-foreground))] line-through">De R$ 65,90</span>
                   <span className="font-display text-4xl leading-none text-[hsl(var(--primary))]">R$ 10,00</span>
                 </div>
                 <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
-                <div className="my-5 space-y-4">{['54 dinâmicas prontas para aplicar', 'Orientações simples para conduzir', 'Sugestões de materiais e adaptações', 'Um repertório para consultar sempre'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div>
+                <div className="my-5 space-y-4">{['50 dinâmicas em PDF', 'Orientações simples para conduzir', 'Sugestões de materiais e adaptações', 'Acesso digital imediato'].map((item) => <div className="flex items-start gap-3 text-sm font-semibold" key={item}><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--accent))]" />{item}</div>)}</div>
                 <div className="border-t border-[hsl(var(--border))] pt-4 text-xs leading-5 text-[hsl(var(--muted-foreground))]"><ShieldCheck size={15} className="mr-1 inline text-[hsl(var(--accent))]" /> Material pensado para a rotina real da Educação Infantil.</div>
+                <a href={CHECKOUT_URL} className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--primary))] px-5 py-3 text-sm font-bold text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-0.5" data-testid="link-basic-cta">Escolher o plano básico <ArrowRight size={16} /></a>
                 </div>
-                <div className="relative overflow-hidden rounded-[22px] border-2 border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] p-6 text-[hsl(var(--foreground))] shadow-[0_12px_28px_rgba(34,22,59,.16)]">
+                <div className="relative overflow-hidden rounded-[22px] border-2 border-[hsl(var(--secondary))] bg-[hsl(var(--secondary))] p-6 text-[hsl(var(--foreground))] shadow-[0_12px_28px_rgba(34,22,59,.16)]" data-testid="card-premium-plan">
                   <span className="absolute right-5 top-5 rounded-full bg-[hsl(var(--primary))] px-3 py-1 text-[9px] font-bold uppercase tracking-[.16em] text-[hsl(var(--primary-foreground))]">mais completo</span>
                   <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[hsl(var(--primary))]">plano premium</p>
                   <p className="mt-3 font-display text-4xl leading-none text-[hsl(var(--primary))]">R$ 27,00</p>
                   <p className="mt-1 text-[11px] font-semibold text-[hsl(var(--muted-foreground))]">pagamento único · acesso digital</p>
                   <div className="my-5 space-y-3 text-sm font-semibold">
-                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Experiência premium para sua rotina</div>
+                    <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />88 dinâmicas em PDF</div>
                     <div className="flex items-start gap-3"><Check size={17} className="mt-0.5 shrink-0 text-[hsl(var(--primary))]" />Material organizado e pronto para usar</div>
+                    <div className="flex items-start gap-3 text-[hsl(var(--primary))]"><Star size={17} className="mt-0.5 shrink-0" fill="currentColor" /> Bônus: certificado de participação</div>
                   </div>
                   <a href={CHECKOUT_URL} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--primary))] px-5 py-3 text-sm font-bold text-[hsl(var(--primary-foreground))] transition-transform hover:-translate-y-0.5" data-testid="link-premium-cta">Quero o plano premium <ArrowRight size={16} /></a>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-[hsl(var(--border)/.72)] bg-[hsl(var(--card)/.5)]">
+          <div className="mx-auto max-w-7xl px-5 py-20 lg:px-10 lg:py-24">
+            <div className="mx-auto max-w-2xl text-center">
+              <SectionLabel>feito para a rotina real</SectionLabel>
+              <h2 className="font-display text-4xl leading-[1.04] tracking-[-.04em] sm:text-5xl" data-testid="text-testimonials-title">Mais tranquilidade para conduzir a turma.</h2>
+              <p className="mt-5 text-[16px] leading-7 text-[hsl(var(--muted-foreground))]">Um repertório organizado para você adaptar, aplicar e criar momentos de troca com as crianças.</p>
+            </div>
+            <div className="mt-12 grid gap-5 md:grid-cols-3">
+              {testimonials.map(([quote, role, initials], index) => (
+                <article className="card-lift rounded-[22px] border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6 shadow-[0_10px_30px_rgba(64,47,95,.06)]" key={quote} data-testid={`card-testimonial-${index}`}>
+                  <div className="flex items-center gap-1 text-[hsl(var(--secondary-foreground))]">
+                    {[0, 1, 2, 3, 4].map((star) => <Star key={star} size={15} fill="currentColor" />)}
+                  </div>
+                  <Quote size={22} className="mt-5 text-[hsl(var(--primary)/.4)]" />
+                  <p className="mt-3 min-h-[108px] text-sm italic leading-7 text-[hsl(var(--foreground)/.82)]">{quote}</p>
+                  <div className="mt-6 flex items-center gap-3 border-t border-[hsl(var(--border))] pt-4">
+                    <span className="grid h-10 w-10 place-items-center rounded-full bg-[hsl(var(--primary))] text-xs font-bold text-[hsl(var(--primary-foreground))]">{initials.slice(0, 2).toUpperCase()}</span>
+                    <div><p className="text-sm font-bold">{role}</p><p className="mt-0.5 text-[11px] text-[hsl(var(--muted-foreground))]">comunidade Aula Viva</p></div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-5 py-20 lg:px-10 lg:py-24">
+          <div className="grid gap-10 rounded-[28px] border border-[hsl(var(--primary)/.22)] bg-[#ead9d0] p-7 sm:p-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:p-14" data-testid="section-about-aula-viva">
+            <div>
+              <SectionLabel>sobre o material</SectionLabel>
+              <h2 className="font-display text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">Criado para apoiar quem faz a Educação Infantil acontecer.</h2>
+              <p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--muted-foreground))]">A Aula Viva reúne propostas simples, acolhedoras e possíveis para transformar momentos comuns da rotina em oportunidades de interação, expressão e aprendizagem.</p>
+            </div>
+            <div className="rounded-[22px] border-2 border-[hsl(var(--primary)/.32)] bg-[hsl(var(--background)/.82)] p-6 sm:p-8">
+              <div className="flex items-center gap-4">
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))] text-lg font-bold text-[hsl(var(--primary-foreground))]">AV</div>
+                <div><p className="font-display text-2xl text-[hsl(var(--primary))]">Aula Viva</p><p className="mt-1 text-sm italic text-[hsl(var(--muted-foreground))]">recursos que aproximam</p></div>
+              </div>
+              <div className="mt-7 grid grid-cols-3 gap-2">
+                <div className="rounded-xl bg-[hsl(var(--secondary)/.35)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">50+</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">propostas</p></div>
+                <div className="rounded-xl bg-[hsl(var(--accent)/.12)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">88</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">no premium</p></div>
+                <div className="rounded-xl bg-[hsl(var(--primary)/.08)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">PDF</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">acesso digital</p></div>
+              </div>
+              <p className="mt-6 text-sm italic leading-6 text-[hsl(var(--foreground)/.78)]">“Planejar pode ser mais leve quando você tem boas ideias à mão para viver cada momento com a turma.”</p>
             </div>
           </div>
         </section>
