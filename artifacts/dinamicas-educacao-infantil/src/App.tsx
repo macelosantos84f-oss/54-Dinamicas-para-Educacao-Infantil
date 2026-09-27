@@ -445,7 +445,7 @@ function Home() {
             </div>
             <div className="rounded-[22px] border-2 border-[hsl(var(--primary)/.32)] bg-[hsl(var(--background)/.82)] p-6 sm:p-8">
               <div className="flex items-center gap-4">
-                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))] text-lg font-bold text-[hsl(var(--primary-foreground))]">JR</div>
+                <img className="h-16 w-16 shrink-0 rounded-full object-cover" src={`${import.meta.env.BASE_URL}juliana-rodrigues.webp`} alt="Foto de Juliana Rodrigues" />
                 <div><p className="font-display text-2xl text-[hsl(var(--primary))]">Juliana Rodrigues</p></div>
               </div>
               <div className="mt-7 grid grid-cols-2 gap-2">
