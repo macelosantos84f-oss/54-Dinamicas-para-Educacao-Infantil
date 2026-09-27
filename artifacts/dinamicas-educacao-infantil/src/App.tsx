@@ -178,9 +178,14 @@ const faqs = [
 ];
 
 const testimonials = [
-  ['“Ter uma dinâmica pronta para cada momento da rotina deixa a sala mais leve e participativa.”', 'Professora da Educação Infantil', 'educadora'],
-  ['“As propostas são simples de entender e dão liberdade para adaptar ao jeito da minha turma.”', 'Coordenadora pedagógica', 'coordenação'],
-  ['“Uso nas acolhidas e transições. As crianças entram na atividade com muito mais vontade.”', 'Professora de Educação Infantil', 'professora'],
+  ['“Ter uma dinâmica pronta para cada momento da rotina deixa a sala mais leve e participativa.”', 'Professora da Educação Infantil'],
+  ['“As propostas são simples de entender e dão liberdade para adaptar ao jeito da minha turma.”', 'Coordenadora pedagógica'],
+  ['“Uso nas acolhidas e transições. As crianças entram na atividade com muito mais vontade.”', 'Professora de Educação Infantil'],
+];
+const testimonialPhotos = [
+  `${import.meta.env.BASE_URL}feedback-educadora-1.jpg`,
+  `${import.meta.env.BASE_URL}feedback-educadora-2.jpg`,
+  `${import.meta.env.BASE_URL}feedback-educadora-3.webp`,
 ];
 
 function SectionLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
@@ -414,7 +419,7 @@ function Home() {
               <p className="mt-5 text-[16px] leading-7 text-[hsl(var(--muted-foreground))]">Um repertório organizado para você adaptar, aplicar e criar momentos de troca com as crianças.</p>
             </div>
             <div className="mt-12 grid gap-5 md:grid-cols-3">
-              {testimonials.map(([quote, role, initials], index) => (
+              {testimonials.map(([quote, role], index) => (
                 <article className="card-lift rounded-[22px] border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6 shadow-[0_10px_30px_rgba(64,47,95,.06)]" key={quote} data-testid={`card-testimonial-${index}`}>
                   <div className="flex items-center gap-1 text-[hsl(var(--secondary-foreground))]">
                     {[0, 1, 2, 3, 4].map((star) => <Star key={star} size={15} fill="currentColor" />)}
@@ -422,7 +427,7 @@ function Home() {
                   <Quote size={22} className="mt-5 text-[hsl(var(--primary)/.4)]" />
                   <p className="mt-3 min-h-[108px] text-sm italic leading-7 text-[hsl(var(--foreground)/.82)]">{quote}</p>
                   <div className="mt-6 flex items-center gap-3 border-t border-[hsl(var(--border))] pt-4">
-                    <span className="grid h-10 w-10 place-items-center rounded-full bg-[hsl(var(--primary))] text-xs font-bold text-[hsl(var(--primary-foreground))]">{initials.slice(0, 2).toUpperCase()}</span>
+                    <img className="h-10 w-10 rounded-full object-cover" src={testimonialPhotos[index]} alt={`Foto de ${role}`} loading="lazy" />
                     <div><p className="text-sm font-bold">{role}</p><p className="mt-0.5 text-[11px] text-[hsl(var(--muted-foreground))]">comunidade Aula Viva</p></div>
                   </div>
                 </article>
