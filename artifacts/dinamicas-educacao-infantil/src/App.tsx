@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, Volume2, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -9,6 +9,8 @@ import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 
 const queryClient = new QueryClient();
 const CHECKOUT_URL = '#checkout-placeholder';
+const HERO_VIDEO_URL = `${import.meta.env.BASE_URL}hero-video.mp4`;
+const HERO_VIDEO_POSTER_URL = `${import.meta.env.BASE_URL}hero-video-poster.jpg`;
 const OFFER_COUNTDOWN_KEY = 'aula-viva-offer-countdown-deadline';
 const OFFER_COUNTDOWN_DURATION = 24 * 60 * 60 * 1000;
 
@@ -187,7 +189,6 @@ function SectionLabel({ children, light = false }: { children: ReactNode; light?
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <div className="page-shell noise">
@@ -225,9 +226,9 @@ function Home() {
             <h1 className="reveal reveal-delay-1 mt-6 max-w-[700px] font-display text-[clamp(3.2rem,7vw,6.7rem)] leading-[.91] tracking-[-.055em] text-[hsl(var(--foreground))]" data-testid="text-hero-title">
               Sua próxima atividade <span className="serif-underline text-[hsl(var(--primary))]">já está pronta.</span>
             </h1>
-            <button type="button" onClick={() => setShowVideo(true)} className="reveal reveal-delay-2 mt-7 grid aspect-[9/16] w-[260px] place-items-center rounded-[28px] bg-black text-white shadow-[10px_10px_0_hsl(var(--secondary))] transition-transform hover:-translate-y-1 hover:shadow-[13px_13px_0_hsl(var(--secondary))] sm:w-[300px]" aria-label="Assistir ao vídeo de apresentação" data-testid="button-hero-video">
-              <Volume2 size={70} strokeWidth={1.5} />
-            </button>
+            <div className="reveal reveal-delay-2 mt-7 aspect-[9/16] w-[260px] overflow-hidden rounded-[28px] bg-black shadow-[10px_10px_0_hsl(var(--secondary))] transition-transform hover:-translate-y-1 hover:shadow-[13px_13px_0_hsl(var(--secondary))] sm:w-[300px]" data-testid="hero-video">
+              <video className="h-full w-full object-cover" src={HERO_VIDEO_URL} poster={HERO_VIDEO_POSTER_URL} controls playsInline preload="metadata" aria-label="Vídeo de apresentação das dinâmicas" />
+            </div>
             <p className="reveal reveal-delay-2 mt-7 max-w-xl text-[17px] leading-8 text-[hsl(var(--muted-foreground))] sm:text-lg" data-testid="text-hero-description">
               54 dinâmicas interativas para transformar a rotina da Educação Infantil em mais conversa, movimento e participação — sem passar a noite planejando.
             </p>
@@ -404,23 +405,22 @@ function Home() {
         </section>
 
         <section className="mx-auto max-w-7xl px-5 py-20 lg:px-10 lg:py-24">
-          <div className="grid gap-10 rounded-[28px] border border-[hsl(var(--primary)/.22)] bg-[#ead9d0] p-7 sm:p-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:p-14" data-testid="section-about-aula-viva">
+          <div className="grid gap-10 rounded-[28px] border border-[hsl(var(--primary)/.22)] bg-[#ead9d0] p-7 sm:p-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:p-14" data-testid="section-about-author">
             <div>
-              <SectionLabel>sobre o material</SectionLabel>
-              <h2 className="font-display text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">Criado para apoiar quem faz a Educação Infantil acontecer.</h2>
-              <p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--muted-foreground))]">A Aula Viva reúne propostas simples, acolhedoras e possíveis para transformar momentos comuns da rotina em oportunidades de interação, expressão e aprendizagem.</p>
+              <SectionLabel>sobre a autora</SectionLabel>
+              <h2 className="font-display text-4xl leading-[1.03] tracking-[-.04em] sm:text-5xl">Experiência e carinho para apoiar quem faz a Educação Infantil acontecer.</h2>
+              <p className="mt-6 max-w-xl text-[16px] leading-8 text-[hsl(var(--muted-foreground))]">Juliana Rodrigues criou este material para reunir propostas simples, acolhedoras e possíveis para transformar momentos comuns da rotina em oportunidades de interação, expressão e aprendizagem.</p>
             </div>
             <div className="rounded-[22px] border-2 border-[hsl(var(--primary)/.32)] bg-[hsl(var(--background)/.82)] p-6 sm:p-8">
               <div className="flex items-center gap-4">
-                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))] text-lg font-bold text-[hsl(var(--primary-foreground))]">AV</div>
-                <div><p className="font-display text-2xl text-[hsl(var(--primary))]">Aula Viva</p><p className="mt-1 text-sm italic text-[hsl(var(--muted-foreground))]">recursos que aproximam</p></div>
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-[hsl(var(--primary))] text-lg font-bold text-[hsl(var(--primary-foreground))]">JR</div>
+                <div><p className="font-display text-2xl text-[hsl(var(--primary))]">Juliana Rodrigues</p></div>
               </div>
-              <div className="mt-7 grid grid-cols-3 gap-2">
-                <div className="rounded-xl bg-[hsl(var(--secondary)/.35)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">50+</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">propostas</p></div>
-                <div className="rounded-xl bg-[hsl(var(--accent)/.12)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">88</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">no premium</p></div>
-                <div className="rounded-xl bg-[hsl(var(--primary)/.08)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">PDF</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">acesso digital</p></div>
+              <div className="mt-7 grid grid-cols-2 gap-2">
+                <div className="rounded-xl bg-[hsl(var(--secondary)/.35)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">4+</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">anos de experiência</p></div>
+                <div className="rounded-xl bg-[hsl(var(--accent)/.12)] px-3 py-4 text-center"><p className="font-display text-2xl text-[hsl(var(--primary))]">2040+</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[.12em] text-[hsl(var(--muted-foreground))]">professoras satisfeitas</p></div>
               </div>
-              <p className="mt-6 text-sm italic leading-6 text-[hsl(var(--foreground)/.78)]">“Planejar pode ser mais leve quando você tem boas ideias à mão para viver cada momento com a turma.”</p>
+              <p className="mt-6 text-sm italic leading-6 text-[hsl(var(--foreground)/.78)]">“Dediquei minha experiência a criar propostas que tornam o planejamento mais leve e deixam mais espaço para viver cada momento com a turma.”</p>
             </div>
           </div>
         </section>
@@ -442,20 +442,6 @@ function Home() {
           </div>
         </section>
       </main>
-      {showVideo && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-[hsl(var(--foreground)/.58)] px-5 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="video-dialog-title" onClick={() => setShowVideo(false)}>
-          <div className="relative w-full max-w-2xl overflow-hidden rounded-[28px] bg-[hsl(var(--background))] p-3 shadow-[0_24px_80px_rgba(34,22,59,.3)]" onClick={(event) => event.stopPropagation()}>
-            <button type="button" onClick={() => setShowVideo(false)} className="absolute right-5 top-5 z-10 grid h-10 w-10 place-items-center rounded-full bg-[hsl(var(--background)/.85)] text-[hsl(var(--foreground))] shadow-sm" aria-label="Fechar vídeo" data-testid="button-close-video"><X size={18} /></button>
-            <div className="grid min-h-[300px] place-items-center rounded-[21px] bg-[hsl(var(--primary))] px-8 py-14 text-center text-[hsl(var(--primary-foreground))]">
-              <div>
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--foreground))]"><CirclePlay size={28} fill="currentColor" /></div>
-                <h2 id="video-dialog-title" className="mt-6 font-display text-3xl">Veja como o material funciona</h2>
-                <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[hsl(var(--primary-foreground)/.72)]">Este espaço está preparado para receber o seu vídeo de apresentação.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       <footer className="bg-[hsl(var(--foreground))] text-[hsl(var(--background))]">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 sm:flex-row sm:items-center sm:justify-between lg:px-10">
           <div className="[&_*]:text-[hsl(var(--background))]"><Mark compact /><p className="mt-4 max-w-xs text-xs leading-5 opacity-60">Recursos para deixar a Educação Infantil mais participativa, possível e viva.</p></div>
