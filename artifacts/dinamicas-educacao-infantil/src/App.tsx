@@ -11,6 +11,7 @@ const queryClient = new QueryClient();
 const CHECKOUT_URL = '#checkout-placeholder';
 const HERO_VIDEO_URL = `${import.meta.env.BASE_URL}hero-video.mp4`;
 const HERO_VIDEO_POSTER_URL = `${import.meta.env.BASE_URL}hero-video-poster.jpg`;
+const HERO_VIDEO_VOLUME = 0.5;
 const OFFER_COUNTDOWN_KEY = 'aula-viva-offer-countdown-deadline';
 const OFFER_COUNTDOWN_DURATION = 24 * 60 * 60 * 1000;
 
@@ -192,11 +193,16 @@ function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.volume = HERO_VIDEO_VOLUME;
+  }, []);
+
   const handleVideoToggle = () => {
     const video = videoRef.current;
     if (!video) return;
 
     if (video.paused) {
+      video.volume = HERO_VIDEO_VOLUME;
       video.muted = false;
       void video.play();
     } else {
