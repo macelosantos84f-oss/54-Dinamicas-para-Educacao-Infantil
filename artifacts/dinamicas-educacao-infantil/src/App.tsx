@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, Volume2, VolumeX, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, CirclePlay, Clock3, Download, Heart, Layers3, Lightbulb, Menu, MousePointer2, Palette, Quote, ShieldCheck, Sparkles, Star, Users, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -189,22 +189,18 @@ function SectionLabel({ children, light = false }: { children: ReactNode; light?
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleVideoSoundToggle = () => {
+  const handleVideoToggle = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const nextMuted = !video.muted;
-    video.muted = nextMuted;
-    setIsVideoMuted(nextMuted);
-
     if (video.paused) {
-      void video.play().catch(() => {
-        video.muted = true;
-        setIsVideoMuted(true);
-      });
+      video.muted = false;
+      void video.play();
+    } else {
+      video.pause();
     }
   };
 
@@ -245,9 +241,13 @@ function Home() {
               Sua próxima atividade <span className="serif-underline text-[hsl(var(--primary))]">já está pronta.</span>
             </h1>
             <div className="reveal reveal-delay-2 relative mt-7 aspect-[9/16] w-[260px] overflow-hidden rounded-[28px] bg-black shadow-[10px_10px_0_hsl(var(--secondary))] transition-transform hover:-translate-y-1 hover:shadow-[13px_13px_0_hsl(var(--secondary))] sm:w-[300px]" data-testid="hero-video">
-              <video ref={videoRef} className="h-full w-full object-cover" src={HERO_VIDEO_URL} poster={HERO_VIDEO_POSTER_URL} muted={isVideoMuted} controls playsInline preload="metadata" aria-label="Vídeo de apresentação das dinâmicas" />
-              <button type="button" onClick={handleVideoSoundToggle} className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/55 text-white shadow-lg backdrop-blur-sm transition-transform hover:scale-105" aria-label={isVideoMuted ? 'Ativar som do vídeo' : 'Silenciar vídeo'} data-testid="button-hero-video-sound">
-                {isVideoMuted ? <VolumeX size={30} strokeWidth={1.8} /> : <Volume2 size={30} strokeWidth={1.8} />}
+              <video ref={videoRef} className="pointer-events-none h-full w-full object-cover" src={HERO_VIDEO_URL} poster={HERO_VIDEO_POSTER_URL} playsInline preload="metadata" onPlay={() => setIsVideoPlaying(true)} onPause={() => setIsVideoPlaying(false)} onEnded={() => setIsVideoPlaying(false)} aria-label="Vídeo de apresentação das dinâmicas" />
+              <button type="button" onClick={handleVideoToggle} className="absolute inset-0 z-10 flex items-center justify-center text-white" aria-label={isVideoPlaying ? 'Pausar vídeo' : 'Assistir ao vídeo'} data-testid="button-hero-video-toggle">
+                {!isVideoPlaying && (
+                  <span className="absolute bottom-7 flex items-center gap-2 rounded-full border border-white/30 bg-black/60 px-4 py-2.5 text-xs font-bold shadow-lg backdrop-blur-sm">
+                    <CirclePlay size={16} fill="currentColor" /> Toque na tela para assistir
+                  </span>
+                )}
               </button>
             </div>
             <p className="reveal reveal-delay-2 mt-7 max-w-xl text-[17px] leading-8 text-[hsl(var(--muted-foreground))] sm:text-lg" data-testid="text-hero-description">
